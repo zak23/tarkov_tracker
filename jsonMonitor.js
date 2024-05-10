@@ -29,8 +29,13 @@ function extractPlayerInfo(filePath) {
     const level = jsonData.characters.pmc.Info.Level;
     const health = jsonData.characters.pmc.Health.BodyParts.Chest.Health.Current;
     const registrationDate = new Date(jsonData.characters.pmc.Info.RegistrationDate * 1000).toLocaleString();
+    // Assuming jsonData contains your JSON data
+    const inraid = jsonData.inraid;
 
-    const OverallCounters = jsonData.characters.pmc.Stats.Eft.OverallCounters;
+// Accessing the "location" and "character" properties
+    const inRaidLocation = inraid.location;
+    const inRaidCharacter = inraid.character;
+
 
     // Assuming jsonData contains your JSON data
     const CurrentWinStreakValue = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
@@ -46,7 +51,7 @@ function extractPlayerInfo(filePath) {
     }).Value;
 
     // Add more fields as needed
-    return {username, level, health, registrationDate, OverallCounters, CurrentWinStreakValue, KilledPmc};
+    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledPmc, inRaidLocation, inRaidCharacter};
 }
 
 
