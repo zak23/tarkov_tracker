@@ -38,7 +38,7 @@ function handlePlayerInfo(playerInfoArray) {
 
     // Loop through player info array and populate the leaderboard
     playerInfoArray.forEach((playerInfo, index) => {
-        const {username, level, health, registrationDate, CurrentWinStreakValue} = playerInfo;
+        const {username, level, health, registrationDate, CurrentWinStreakValue, KilledPmc} = playerInfo;
 
         const row = `
       <tr>
@@ -46,6 +46,7 @@ function handlePlayerInfo(playerInfoArray) {
         <td>${registrationDate}</td>
         <td>${username}</td>
         <td>${level}</td>
+        <td>${KilledPmc}</td>
         <td>${health}</td>
         <td>${CurrentWinStreakValue}</td>
         <!-- Add more table cells for additional player information -->

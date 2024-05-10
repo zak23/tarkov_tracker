@@ -39,8 +39,14 @@ function extractPlayerInfo(filePath) {
         return keys.includes("CurrentWinStreak") && keys.includes("Pmc");
     }).Value;
 
+    const KilledPmc = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
+        const keys = item.Key;
+        // Check if the item has the keys "CurrentWinStreak" and "Pmc"
+        return keys.includes("KilledPmc") && keys.includes("KilledPmc");
+    }).Value;
+
     // Add more fields as needed
-    return {username, level, health, registrationDate, OverallCounters, CurrentWinStreakValue};
+    return {username, level, health, registrationDate, OverallCounters, CurrentWinStreakValue, KilledPmc};
 }
 
 
