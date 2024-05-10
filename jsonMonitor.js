@@ -5,7 +5,7 @@ const WebSocket = require('ws');
 
 const app = express();
 const server = app.listen(3034, () => {
-    console.log('Server listening on port 3000');
+    console.log('Server listening');
 });
 
 app.use(express.static('public'));
