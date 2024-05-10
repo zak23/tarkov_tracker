@@ -37,8 +37,9 @@ const locationMapping = {
     "factory4_night" : "Factory",
     "Lighthouse" : "Lighthouse",
     "Interchange" : "Interchange",
-    "ResevBase" : "Reserve",
+    "ReservBase" : "Reserve",
     "TarkovStreets" : "Streets of Tarkov",
+    "Sandbox" : "Ground Zero",
     "??" : "The Lab"
 };
 
