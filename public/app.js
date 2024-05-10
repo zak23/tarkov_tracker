@@ -1,7 +1,7 @@
 // app.js
 
 // WebSocket connection
-const ws = new WebSocket('ws://localhost:3000');
+const ws = new WebSocket('ws://localhost:3034');
 
 // Function to fetch updated player information
 function updateLeaderboard() {
