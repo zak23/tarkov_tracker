@@ -36,7 +36,6 @@ function extractPlayerInfo(filePath) {
     const inRaidLocation = inraid.location;
     const inRaidCharacter = inraid.character;
 
-
     // Assuming jsonData contains your JSON data
     const CurrentWinStreakValue = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
         const keys = item.Key;
@@ -50,15 +49,15 @@ function extractPlayerInfo(filePath) {
         return keys.includes("KilledUsec") && keys.includes("KilledUsec");
     }).Value;
 
-
     const KilledBear = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
         const keys = item.Key;
         // Check if the item has the keys "CurrentWinStreak" and "Pmc"
         return keys.includes("KilledBear") && keys.includes("KilledBear");
     }).Value;
 
+    const TotalInGameTime = jsonData.characters.pmc.Stats.Eft.TotalInGameTime;
     // Add more fields as needed
-    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter};
+    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime};
 }
 
 

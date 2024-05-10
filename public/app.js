@@ -64,7 +64,8 @@ function handlePlayerInfo(playerInfoArray) {
             KilledUsec,
             KilledBear,
             inRaidLocation,
-            inRaidCharacter
+            inRaidCharacter,
+            TotalInGameTime
         } = playerInfo;
 
 // Determine status cell color based on player's location
@@ -84,6 +85,17 @@ function handlePlayerInfo(playerInfoArray) {
         const statusIcon = `<i class="fa-solid fa-circle" style="color: ${statusCellColor}"></i>`;
         const statusInfo = inRaidLocation !== "none" ? `${statusIcon} ${characterIcon} ${displayLocation}` : statusIcon;
 
+        function convertSecondsToMinutesAndHours(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const remainingMinutes = minutes % 60;
+            return `${hours}h ${remainingMinutes}m`;
+        }
+
+// Inside the handlePlayerInfo function
+        const totalInGameTimeFormatted = convertSecondsToMinutesAndHours(TotalInGameTime);
+
+
         const row = `
       <tr>
         <td>${index + 1}</td>
@@ -95,6 +107,7 @@ function handlePlayerInfo(playerInfoArray) {
   
         <td>${KilledUsec + KilledBear}</td>
         <td>${CurrentWinStreakValue}</td>
+       <td>${totalInGameTimeFormatted}</td>
         <!-- Add more table cells for additional player information -->
       </tr>
     `;
