@@ -30,18 +30,19 @@ ws.onmessage = (event) => {
 
 const locationMapping = {
     // Add mappings for internal names and display names
-    "Shoreline" : "Shoreline",
-    "Woods" : "Woods",
-    "bigmap" : "Customs",
-    "factory4_day" : "Factory",
-    "factory4_night" : "Factory",
-    "Lighthouse" : "Lighthouse",
-    "Interchange" : "Interchange",
-    "RezervBase" : "Reserve",
-    "TarkovStreets" : "Streets of Tarkov",
-    "Sandbox" : "Ground Zero",
-    "??" : "The Lab"
+    "Shoreline": "Shoreline",
+    "Woods": "Woods",
+    "bigmap": "Customs",
+    "factory4_day": "Factory",
+    "factory4_night": "Factory",
+    "Lighthouse": "Lighthouse",
+    "Interchange": "Interchange",
+    "RezervBase": "Reserve",
+    "TarkovStreets": "Streets of Tarkov",
+    "Sandbox": "Ground Zero",
+    "??": "The Lab"
 };
+
 
 
 // Function to handle received player information and update the leaderboard
@@ -54,26 +55,45 @@ function handlePlayerInfo(playerInfoArray) {
 
     // Loop through player info array and populate the leaderboard
     playerInfoArray.forEach((playerInfo, index) => {
-        const {username, level, health, registrationDate, CurrentWinStreakValue, KilledPmc, inRaidLocation, inRaidCharacter} = playerInfo;
+        const {
+            username,
+            level,
+            health,
+            registrationDate,
+            CurrentWinStreakValue,
+            KilledUsec,
+            KilledBear,
+            inRaidLocation,
+            inRaidCharacter
+        } = playerInfo;
 
-        // Determine status cell color based on player's location
+// Determine status cell color based on player's location
         const statusCellColor = inRaidLocation !== "none" ? "green" : "red";
-
-        // Map internal location name to display name
+// Map internal location name to display name
         const displayLocation = locationMapping[inRaidLocation] || inRaidLocation;
 
-        // Construct the row with updated status cell and character information
+// Define icon based on character type
+        let characterIcon = '';
+        if (inRaidCharacter === 'pmc') {
+            characterIcon = '<i class="fa-solid fa-person-rifle"></i>'; // Icon for PMC
+        } else if (inRaidCharacter === 'scav') {
+            characterIcon = '<i class="fa-solid fa-recycle"></i>'; // Icon for Scav
+        }
+
+// Construct the row with updated status cell, character icon, and location information
         const statusIcon = `<i class="fa-solid fa-circle" style="color: ${statusCellColor}"></i>`;
-        const statusInfo = inRaidLocation !== "none" ? `${statusIcon} ${inRaidCharacter} - ${displayLocation}` : statusIcon;
+        const statusInfo = inRaidLocation !== "none" ? `${statusIcon} ${characterIcon} ${displayLocation}` : statusIcon;
 
         const row = `
       <tr>
         <td>${index + 1}</td>
-        <td>${registrationDate}</td>
+              <td>${statusInfo}</td>
+        
+<!--        <td>${registrationDate}</td>-->
         <td>${username}</td>
         <td>${level}</td>
-        <td>${statusInfo}</td>
-        <td>${KilledPmc}</td>
+  
+        <td>${KilledUsec + KilledBear}</td>
         <td>${CurrentWinStreakValue}</td>
         <!-- Add more table cells for additional player information -->
       </tr>

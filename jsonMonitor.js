@@ -44,14 +44,21 @@ function extractPlayerInfo(filePath) {
         return keys.includes("CurrentWinStreak") && keys.includes("Pmc");
     }).Value;
 
-    const KilledPmc = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
+    const KilledUsec = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
         const keys = item.Key;
         // Check if the item has the keys "CurrentWinStreak" and "Pmc"
-        return keys.includes("KilledPmc") && keys.includes("KilledPmc");
+        return keys.includes("KilledUsec") && keys.includes("KilledUsec");
+    }).Value;
+
+
+    const KilledBear = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
+        const keys = item.Key;
+        // Check if the item has the keys "CurrentWinStreak" and "Pmc"
+        return keys.includes("KilledBear") && keys.includes("KilledBear");
     }).Value;
 
     // Add more fields as needed
-    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledPmc, inRaidLocation, inRaidCharacter};
+    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter};
 }
 
 
