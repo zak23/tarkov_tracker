@@ -6,9 +6,26 @@ const ws = new WebSocket('ws://localhost:3000');
 // Function to fetch updated player information
 function updateLeaderboard() {
     console.log('Sending request to update leaderboard...');
-    // Send a message to the server to request updated player information
-    ws.send('updateLeaderboard');
+    // Check if WebSocket connection is open
+    if (ws.readyState === WebSocket.OPEN) {
+        // Send a message to the server to request updated player information
+        ws.send('updateLeaderboard');
+    } else {
+        console.log('WebSocket connection is not open.');
+    }
 }
+
+// Trigger update leaderboard function when page loads
+window.onload = () => {
+    console.log('Page loaded, updating leaderboard...');
+    updateLeaderboard();
+};
+
+// Event listener for WebSocket messages
+ws.onmessage = (event) => {
+    const playerInfoArray = JSON.parse(event.data);
+    handlePlayerInfo(playerInfoArray);
+};
 
 // Function to handle received player information and update the leaderboard
 function handlePlayerInfo(playerInfoArray) {
@@ -37,14 +54,5 @@ function handlePlayerInfo(playerInfoArray) {
     });
 }
 
-// Trigger update leaderboard function when page loads
-window.onload = () => {
-    console.log('Page loaded, updating leaderboard...');
-    updateLeaderboard();
-};
 
-// Event listener for WebSocket messages
-ws.onmessage = (event) => {
-    const playerInfoArray = JSON.parse(event.data);
-    handlePlayerInfo(playerInfoArray);
-};
+
