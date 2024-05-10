@@ -30,14 +30,15 @@ ws.onmessage = (event) => {
 
 const locationMapping = {
     // Add mappings for internal names and display names
-    "??" : "Shoreline",
-    "??" : "Woods",
+    "Shoreline" : "Shoreline",
+    "Woods" : "Woods",
     "bigmap" : "Customs",
-    "??" : "Factory",
-    "??" : "Lighthouse",
+    "factory4_day" : "Factory",
+    "factory4_night" : "Factory",
+    "Lighthouse" : "Lighthouse",
     "Interchange" : "Interchange",
     "ResevBase" : "Reserve",
-    "??" : "Streets of Tarkov",
+    "TarkovStreets" : "Streets of Tarkov",
     "??" : "The Lab"
 };
 
