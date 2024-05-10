@@ -28,6 +28,20 @@ ws.onmessage = (event) => {
     handlePlayerInfo(playerInfoArray);
 };
 
+const locationMapping = {
+    // Add mappings for internal names and display names
+    "??" : "Shoreline",
+    "??" : "Woods",
+    "bigmap" : "Customs",
+    "??" : "Factory",
+    "??" : "Lighthouse",
+    "Interchange" : "Interchange",
+    "ResevBase" : "Reserve",
+    "??" : "Streets of Tarkov",
+    "??" : "The Lab"
+};
+
+
 // Function to handle received player information and update the leaderboard
 function handlePlayerInfo(playerInfoArray) {
     console.log('Received updated player information:', playerInfoArray);
@@ -43,9 +57,12 @@ function handlePlayerInfo(playerInfoArray) {
         // Determine status cell color based on player's location
         const statusCellColor = inRaidLocation !== "none" ? "green" : "red";
 
+        // Map internal location name to display name
+        const displayLocation = locationMapping[inRaidLocation] || inRaidLocation;
+
         // Construct the row with updated status cell and character information
         const statusIcon = `<i class="fa-solid fa-circle" style="color: ${statusCellColor}"></i>`;
-        const statusInfo = inRaidLocation !== "none" ? `${statusIcon} ${inRaidLocation}` : statusIcon;
+        const statusInfo = inRaidLocation !== "none" ? `${statusIcon} ${inRaidCharacter} - ${displayLocation}` : statusIcon;
 
         const row = `
       <tr>
@@ -62,6 +79,7 @@ function handlePlayerInfo(playerInfoArray) {
         leaderboardBody.innerHTML += row;
     });
 }
+
 
 
 
