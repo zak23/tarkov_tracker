@@ -1,0 +1,13 @@
+/* style.css */
+
+/* Dark theme for the body */
+body {
+    background-color: #212529; /* Dark background color */
+    color: #ffffff; /* Light text color */
+}
+
+/* Dark theme for the leaderboard */
+.table-dark {
+    background-color: #343a40; /* Dark table background color */
+    color: #ffffff; /* Light text color */
+}

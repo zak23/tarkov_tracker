@@ -4,40 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape from Tarkov Leaderboard</title>
-    <style>
-        /* Add your CSS styles here */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<h1>Escape from Tarkov Leaderboard</h1>
-<button id="updateButton">Update Leaderboard</button>
-<table id="leaderboard">
-    <thead>
-    <tr>
-        <th>Rank</th>
-        <th>Username</th>
-        <th>Level</th>
-        <th>Health</th>
-        <!-- Add more table headers for additional player information -->
-    </tr>
-    </thead>
-    <tbody id="leaderboard-body">
-    <!-- Leaderboard rows will be dynamically added here -->
-    </tbody>
-</table>
+<div class="container">
+    <h1 class="mt-4 mb-3">Escape from Tarkov Leaderboard</h1>
+    <button id="updateButton" class="btn btn-primary mb-3">Update Leaderboard</button>
+    <table id="leaderboard" class="table table-dark">
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Registration Date</th>
+            <th>Username</th>
+            <th>Level</th>
+            <th>Health</th>
+            <th>Current Win Streak</th>
+            <!-- Add more table headers for additional player information -->
+        </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+        <!-- Leaderboard rows will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
 
-<!-- Include the JavaScript file -->
+<!-- Bootstrap JS (optional, only needed if you use Bootstrap JavaScript features) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Include your custom JavaScript file -->
 <script src="app.js"></script>
-
 </body>
 </html>

@@ -23,11 +23,24 @@ const wss = new WebSocket.Server({server});
 function extractPlayerInfo(filePath) {
     const fileData = fs.readFileSync(filePath, 'utf8');
     const jsonData = JSON.parse(fileData);
+
     const username = jsonData.characters.pmc.Info.Nickname;
+    // const registrationDate = jsonData.characters.pmc.Info.RegistrationDate;
     const level = jsonData.characters.pmc.Info.Level;
     const health = jsonData.characters.pmc.Health.BodyParts.Chest.Health.Current;
+    const registrationDate = new Date(jsonData.characters.pmc.Info.RegistrationDate * 1000).toLocaleString();
+
+    const OverallCounters = jsonData.characters.pmc.Stats.Eft.OverallCounters;
+
+    // Assuming jsonData contains your JSON data
+    const CurrentWinStreakValue = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
+        const keys = item.Key;
+        // Check if the item has the keys "CurrentWinStreak" and "Pmc"
+        return keys.includes("CurrentWinStreak") && keys.includes("Pmc");
+    }).Value;
+
     // Add more fields as needed
-    return {username, level, health};
+    return {username, level, health, registrationDate, OverallCounters, CurrentWinStreakValue};
 }
 
 
