@@ -1,0 +1,47 @@
+// app.js
+
+// WebSocket connection
+const ws = new WebSocket('ws://localhost:3000');
+
+// Function to fetch updated player information
+function updateLeaderboard() {
+    console.log('Sending request to update leaderboard...');
+    // Send a message to the server to request updated player information
+    ws.send('updateLeaderboard');
+}
+
+// Function to handle received player information and update the leaderboard
+function handlePlayerInfo(playerInfoArray) {
+    console.log('Received updated player information:', playerInfoArray);
+    const leaderboardBody = document.getElementById('leaderboard-body');
+
+    // Clear previous leaderboard entries
+    leaderboardBody.innerHTML = '';
+
+    // Loop through player info array and populate the leaderboard
+    playerInfoArray.forEach((playerInfo, index) => {
+        const {username, level, health} = playerInfo;
+        const row = `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${username}</td>
+        <td>${level}</td>
+        <td>${health}</td>
+        <!-- Add more table cells for additional player information -->
+      </tr>
+    `;
+        leaderboardBody.innerHTML += row;
+    });
+}
+
+// Trigger update leaderboard function when page loads
+window.onload = () => {
+    console.log('Page loaded, updating leaderboard...');
+    updateLeaderboard();
+};
+
+// Event listener for WebSocket messages
+ws.onmessage = (event) => {
+    const playerInfoArray = JSON.parse(event.data);
+    handlePlayerInfo(playerInfoArray);
+};

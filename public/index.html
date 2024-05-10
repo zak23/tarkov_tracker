@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape from Tarkov Leaderboard</title>
+    <style>
+        /* Add your CSS styles here */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<h1>Escape from Tarkov Leaderboard</h1>
+<button id="updateButton">Update Leaderboard</button>
+<table id="leaderboard">
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Username</th>
+        <th>Level</th>
+        <th>Health</th>
+        <!-- Add more table headers for additional player information -->
+    </tr>
+    </thead>
+    <tbody id="leaderboard-body">
+    <!-- Leaderboard rows will be dynamically added here -->
+    </tbody>
+</table>
+
+<!-- Include the JavaScript file -->
+<script src="app.js"></script>
+
+</body>
+</html>
