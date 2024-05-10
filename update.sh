@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Navigate to your Git repository
-cd /path/to/your/repository
-
 # Pull changes from Git
 git pull
 

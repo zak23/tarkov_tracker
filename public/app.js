@@ -40,15 +40,18 @@ function handlePlayerInfo(playerInfoArray) {
     playerInfoArray.forEach((playerInfo, index) => {
         const {username, level, health, registrationDate, CurrentWinStreakValue, KilledPmc, inRaidLocation, inRaidCharacter} = playerInfo;
 
+        // Determine status cell color based on player's location
+        const statusCellColor = inRaidLocation !== "none" ? "green" : "red";
+
+        // Construct the row with updated status cell and character information
         const row = `
       <tr>
         <td>${index + 1}</td>
         <td>${registrationDate}</td>
         <td>${username}</td>
         <td>${level}</td>
-        <td>${inRaidLocation}</td>
+        <td><i class="fa-solid fa-circle" style="color: ${statusCellColor}"></i> ${inRaidLocation !== "none" ? inRaidCharacter : ''}</td>
         <td>${KilledPmc}</td>
-     
         <td>${CurrentWinStreakValue}</td>
         <!-- Add more table cells for additional player information -->
       </tr>
@@ -56,6 +59,8 @@ function handlePlayerInfo(playerInfoArray) {
         leaderboardBody.innerHTML += row;
     });
 }
+
+
 
 
 

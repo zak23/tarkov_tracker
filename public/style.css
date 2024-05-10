@@ -11,3 +11,17 @@ body {
     background-color: #343a40; /* Dark table background color */
     color: #ffffff; /* Light text color */
 }
+#inraid-status {
+    display: flex;
+    align-items: center;
+}
+
+#location-icon,
+#character-icon {
+    margin-right: 5px;
+}
+
+#location-text,
+#character-text {
+    margin-right: 10px;
+}
