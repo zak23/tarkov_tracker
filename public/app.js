@@ -87,13 +87,14 @@ function handlePlayerInfo(playerInfoArray) {
 
         function convertSecondsToMinutesAndHours(seconds) {
             const minutes = Math.floor(seconds / 60);
-            const hours = Math.floor(minutes / 60);
+            const hours = Math.floor(seconds / 3600); // Corrected calculation for hours
             const remainingMinutes = minutes % 60;
             return `${hours}h ${remainingMinutes}m`;
         }
 
 // Inside the handlePlayerInfo function
         const totalInGameTimeFormatted = convertSecondsToMinutesAndHours(TotalInGameTime);
+
 
 
         const row = `
