@@ -66,7 +66,8 @@ function handlePlayerInfo(playerInfoArray) {
             KilledBear,
             inRaidLocation,
             inRaidCharacter,
-            TotalInGameTime
+            TotalInGameTime,
+            scavUp
         } = playerInfo;
 
 // Determine status cell color based on player's location
@@ -98,6 +99,18 @@ function handlePlayerInfo(playerInfoArray) {
 
 
 
+        const epochTime = Math.floor(Date.now() / 1000); // Get the current epoch time in seconds
+
+        let statusScavCellColor;
+
+        if (epochTime > scavUp) {
+            statusScavCellColor = 'green';
+        } else {
+            statusScavCellColor = 'red'; // You can choose another color if needed
+        }
+
+        const statusScavIcon = `<i class="fa-solid fa-circle" style="color: ${statusScavCellColor}"></i>`;
+
         const row = `
       <tr>
         <td>${index + 1}</td>
@@ -110,6 +123,7 @@ function handlePlayerInfo(playerInfoArray) {
         <td>${KilledUsec + KilledBear}</td>
         <td>${CurrentWinStreakValue}</td>
        <td>${totalInGameTimeFormatted}</td>
+        <td>${statusScavIcon}</td>
         <!-- Add more table cells for additional player information -->
       </tr>
     `;
