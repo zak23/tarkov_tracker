@@ -17,6 +17,7 @@ Ideally you would run this alongside https://hub.docker.com/r/k2rlxyz/fika See m
 
 - Real-time monitoring of player profiles
 - Display player statistics including level, health, kills, and more
+- Realtime in-raid status and maps.
 - Real-time updates with WebSockets
 - Customizable display names for in-game locations
 - Dark war-like theme using Bootstrap
