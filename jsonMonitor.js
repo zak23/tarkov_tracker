@@ -32,9 +32,14 @@ function extractPlayerInfo(filePath) {
     // Assuming jsonData contains your JSON data
     const inraid = jsonData.inraid;
 
-// Accessing the "location" and "character" properties
-    const inRaidLocation = inraid.location;
-    const inRaidCharacter = inraid.character;
+    // Handle inraid status with error handling
+    let inRaidLocation = "none";
+    let inRaidCharacter = "unknown";
+
+    if (jsonData.inraid && jsonData.inraid.location && jsonData.inraid.character) {
+        inRaidLocation = jsonData.inraid.location || "none";
+        inRaidCharacter = jsonData.inraid.character || "unknown";
+    }
 
     // Assuming jsonData contains your JSON data
     const CurrentWinStreakValue = jsonData.characters.pmc.Stats.Eft.OverallCounters.Items.find(item => {
@@ -56,6 +61,7 @@ function extractPlayerInfo(filePath) {
     }).Value;
 
     const TotalInGameTime = jsonData.characters.pmc.Stats.Eft.TotalInGameTime;
+
     // Add more fields as needed
     return {username, level, health, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime};
 }

@@ -46,7 +46,8 @@ const locationMapping = {
 
 // Function to handle received player information and update the leaderboard
 function handlePlayerInfo(playerInfoArray) {
-    console.log('Received updated player information:', playerInfoArray);
+    const currentTime = new Date().toLocaleString();
+    console.log(`Received updated player information at ${currentTime}:`, playerInfoArray);
     const leaderboardBody = document.getElementById('leaderboard-body');
 
     // Clear previous leaderboard entries
