@@ -1,7 +1,6 @@
 // app.js
 
 // WebSocket connection
-// const ws = new WebSocket('ws://192.168.1.144:3034');
 const ws = new WebSocket(location.origin.replace(/^http/, 'ws'));
 
 // Function to fetch updated player information
@@ -40,7 +39,7 @@ const locationMapping = {
     "RezervBase": "Reserve",
     "TarkovStreets": "Streets of Tarkov",
     "Sandbox": "Ground Zero",
-    "??": "The Lab"
+    "Laboratory": "The Lab"
 };
 
 

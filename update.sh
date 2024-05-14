@@ -18,4 +18,4 @@ git pull
 docker build --no-cache -t tarkov_tracker .
 
 # Run Docker container with custom name in detached mode
-docker run --name $custom_container_name -d -v /home/docker/fika/user/profiles:/usr/src/app/profiles -p 3034:3034 tarkov_tracker
+docker run --name $custom_container_name -d -v /home/docker/fika/user/profiles:/usr/src/app/profiles -p 3034:3000 tarkov_tracker

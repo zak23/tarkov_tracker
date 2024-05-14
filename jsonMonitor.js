@@ -4,7 +4,7 @@ const express = require('express');
 const WebSocket = require('ws');
 
 const app = express();
-const server = app.listen(3034, () => {
+const server = app.listen(3000, () => {
     console.log('Server listening');
 });
 
