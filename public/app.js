@@ -1,5 +1,22 @@
 // app.js
 
+$(document).ready(function () {
+    $('.table .accordion-toggle').click(function (e) {
+        e.preventDefault();
+
+        var $row = $(this).closest('tr');
+        var $target = $($row.data('target'));
+
+        if ($target.hasClass('in')) {
+            $target.collapse('hide');
+            $(this).find('button').text('Expand');
+        } else {
+            $target.collapse('show');
+            $(this).find('button').text('Collapse');
+        }
+    });
+});
+
 // WebSocket connection
 const ws = new WebSocket(location.origin.replace(/^http/, 'ws'));
 
@@ -43,7 +60,6 @@ const locationMapping = {
 };
 
 
-
 // Function to handle received player information and update the leaderboard
 function handlePlayerInfo(playerInfoArray) {
     const currentTime = new Date().toLocaleString();
@@ -68,7 +84,17 @@ function handlePlayerInfo(playerInfoArray) {
             inRaidCharacter,
             TotalInGameTime,
             scavUp,
-            insuranceReady
+            insuranceReady,
+            Energy,
+            Hydration,
+            Temperature,
+            chestHealth,
+            headHealth,
+            leftArmHealth,
+            leftLegHealth,
+            rightArmHealth,
+            rightLegHealth,
+            stomachHealth,
         } = playerInfo;
 
 // Determine status cell color based on player's location
@@ -125,8 +151,6 @@ function handlePlayerInfo(playerInfoArray) {
         }
 
 
-
-
         insuranceReady.forEach(entry => {
             const scheduledTime = entry.scheduledTime;
             const maxStorageTime = entry.maxStorageTime;
@@ -171,24 +195,54 @@ function handlePlayerInfo(playerInfoArray) {
         const tableCellContent = count > 0 ? `${statusInsuranceIcon} - ${insuranceTimeDisplay}` : statusInsuranceIcon;
         const tableCell = `${tableCellContent}`;
 
-
-
         const row = `
-      <tr>
+     <tr data-toggle="collapse" data-target="#row1" class="accordion-toggle">
         <td>${index + 1}</td>
-              <td>${statusInfo}</td>
-        
+        <td>${statusInfo}</td>
 <!--        <td>${registrationDate}</td>-->
         <td>${username}</td>
         <td>${level}</td>
-  
+
         <td>${KilledUsec + KilledBear}</td>
         <td>${CurrentWinStreakValue}</td>
-       <td>${totalInGameTimeFormatted}</td>
+     
         <td>${statusScavIcon}</td>
         <td>${tableCell}</td>
+        <td><button class="btn btn-sm btn-info">Expand</button></td>
         <!-- Add more table cells for additional player information -->
       </tr>
+       <tr>
+            <td colspan="10" class="hiddenRow">
+                <div class="accordian-body collapse" id="row1"> 
+                <div class="container">
+                <div class="row">
+          
+                   <div class="col-md-4"> <h6>Additional Player Information</h6>
+                   <h6>Stats</h6>
+                     <p>Total In-Raid Time: ${totalInGameTimeFormatted}</p>
+                    </div>
+                     <div class="col-md-4">
+                     <h6>Health</h6>
+                    
+                     
+                        <p>Chest Health: ${chestHealth.Current / chestHealth.Maximum * 100}%</p>
+                        <p>Head Health: ${headHealth.Current / headHealth.Maximum * 100}%</p>
+                        <p>Left Arm Health: ${leftArmHealth.Current / leftArmHealth.Maximum * 100}%</p>
+                        <p>Left Leg Health: ${leftLegHealth.Current/ leftLegHealth.Maximum * 100}%</p>
+                        <p>Right Arm Health: ${rightArmHealth.Current / rightArmHealth.Maximum * 100}%</p>
+                        <p>Right Leg Health: ${rightLegHealth.Current/ rightLegHealth.Maximum * 100}%</p>
+                        <p>Stomach Health: ${stomachHealth.Current/ stomachHealth.Maximum * 100}%</p>
+                        
+                    </div>
+                     <div class="col-md-4">
+                    <p>Energy: ${Energy.Current}</p>
+                        <p>Hydration: ${Hydration.Current}</p>
+                        <p>Temperature: ${Temperature.Current}</p>
+                    </div>
+                   </div></div>
+                </div>
+            </td>
+        </tr>
     `;
         leaderboardBody.innerHTML += row;
     });

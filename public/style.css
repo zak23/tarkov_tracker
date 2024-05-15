@@ -25,3 +25,12 @@ body {
 #character-text {
     margin-right: 10px;
 }
+
+.hiddenRow {
+    padding: 0 !important;
+}
+
+.accordian-body {
+    padding: 10px;
+
+}

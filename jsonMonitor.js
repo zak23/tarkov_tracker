@@ -27,7 +27,21 @@ function extractPlayerInfo(filePath) {
     const username = jsonData.characters.pmc.Info.Nickname;
     // const registrationDate = jsonData.characters.pmc.Info.RegistrationDate;
     const level = jsonData.characters.pmc.Info.Level;
-    const health = jsonData.characters.pmc.Health.BodyParts.Chest.Health.Current;
+    const chestHealth = jsonData.characters.pmc.Health.BodyParts.Chest.Health;
+    const headHealth = jsonData.characters.pmc.Health.BodyParts.Head.Health;
+    const leftArmHealth = jsonData.characters.pmc.Health.BodyParts.LeftArm.Health;
+    const leftLegHealth = jsonData.characters.pmc.Health.BodyParts.LeftLeg.Health;
+    const rightArmHealth = jsonData.characters.pmc.Health.BodyParts.RightArm.Health;
+    const rightLegHealth = jsonData.characters.pmc.Health.BodyParts.RightLeg.Health;
+    const stomachHealth = jsonData.characters.pmc.Health.BodyParts.Stomach.Health;
+
+
+    const Energy = jsonData.characters.pmc.Health.Energy;
+    const Hydration = jsonData.characters.pmc.Health.Hydration;
+    const Temperature = jsonData.characters.pmc.Health.Temperature;
+
+
+
     const registrationDate = new Date(jsonData.characters.pmc.Info.RegistrationDate * 1000).toLocaleString();
 
     // Handle inraid status with error handling
@@ -65,7 +79,7 @@ function extractPlayerInfo(filePath) {
     const insuranceReady = jsonData.insurance;
 
     // Add more fields as needed
-    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime, scavUp, insuranceReady};
+    return {username, level, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime, scavUp, insuranceReady, Energy, Hydration, Temperature, chestHealth, headHealth, leftArmHealth, leftLegHealth, rightArmHealth, rightLegHealth, stomachHealth};
 }
 
 
