@@ -67,7 +67,8 @@ function handlePlayerInfo(playerInfoArray) {
             inRaidLocation,
             inRaidCharacter,
             TotalInGameTime,
-            scavUp
+            scavUp,
+            insuranceReady
         } = playerInfo;
 
 // Determine status cell color based on player's location
@@ -97,8 +98,6 @@ function handlePlayerInfo(playerInfoArray) {
 // Inside the handlePlayerInfo function
         const totalInGameTimeFormatted = convertSecondsToMinutesAndHours(TotalInGameTime);
 
-
-
         const epochTime = Math.floor(Date.now() / 1000); // Get the current epoch time in seconds
 
         let statusScavCellColor;
@@ -110,6 +109,69 @@ function handlePlayerInfo(playerInfoArray) {
         }
 
         const statusScavIcon = `<i class="fa-solid fa-circle" style="color: ${statusScavCellColor}"></i>`;
+
+        // console.log(insuranceReady);
+
+        // Iterate over each entry in the insurance array
+        let count = 0;
+        let shortestRemainingTime = Infinity;
+
+        // Function to format seconds into HH:MM:SS
+        function formatTime(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+
+
+
+        insuranceReady.forEach(entry => {
+            const scheduledTime = entry.scheduledTime;
+            const maxStorageTime = entry.maxStorageTime;
+            const expirationTime = scheduledTime + maxStorageTime;
+            const remainingTime = expirationTime - epochTime;
+
+            if (remainingTime > 0) {
+                count++;
+                // console.log(`Scheduled time ${scheduledTime} is in the future. Remaining time: ${formatTime(remainingTime)}`);
+                if (remainingTime < shortestRemainingTime) {
+                    shortestRemainingTime = remainingTime;
+                }
+            } else {
+                // console.log(`Scheduled time ${scheduledTime} is expired. Expiration was at: ${expirationTime}`);
+            }
+        });
+
+        let statusInsuranceCellColor;
+        let statusInsuranceIcon;
+
+        if (count > 0) {
+            statusInsuranceCellColor = 'green';
+            statusInsuranceIcon = `<i class="fa-solid fa-circle" style="color: ${statusInsuranceCellColor}"></i>`;
+            if (count > 1) {
+                statusInsuranceIcon += ` <span>x${count}</span>`;
+            }
+        } else {
+            statusInsuranceCellColor = 'red';
+            statusInsuranceIcon = `<i class="fa-solid fa-circle" style="color: ${statusInsuranceCellColor}"></i>`;
+        }
+
+// Only show the time if there is at least one insurance ready
+        let insuranceTimeDisplay = '';
+        if (shortestRemainingTime !== Infinity) {
+            insuranceTimeDisplay = formatTime(shortestRemainingTime);
+            // console.log(`Shortest remaining time: ${insuranceTimeDisplay}`);
+        } else {
+            // console.log('No insurance entries are ready.');
+        }
+
+// Display the status icon and time conditionally
+        const tableCellContent = count > 0 ? `${statusInsuranceIcon} - ${insuranceTimeDisplay}` : statusInsuranceIcon;
+        const tableCell = `${tableCellContent}`;
+
+
 
         const row = `
       <tr>
@@ -124,6 +186,7 @@ function handlePlayerInfo(playerInfoArray) {
         <td>${CurrentWinStreakValue}</td>
        <td>${totalInGameTimeFormatted}</td>
         <td>${statusScavIcon}</td>
+        <td>${tableCell}</td>
         <!-- Add more table cells for additional player information -->
       </tr>
     `;

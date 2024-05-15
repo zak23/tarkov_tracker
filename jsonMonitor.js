@@ -62,8 +62,10 @@ function extractPlayerInfo(filePath) {
 
     const TotalInGameTime = jsonData.characters.pmc.Stats.Eft.TotalInGameTime;
 
+    const insuranceReady = jsonData.insurance;
+
     // Add more fields as needed
-    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime, scavUp};
+    return {username, level, health, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime, scavUp, insuranceReady};
 }
 
 
