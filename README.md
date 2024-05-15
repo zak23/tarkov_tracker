@@ -17,9 +17,10 @@ Ideally you would run this alongside https://hub.docker.com/r/k2rlxyz/fika See m
 
 - Real-time monitoring of player profiles
 - Display player statistics including level, health, kills, and more
-- Realtime in-raid status and maps.
-- Real-time updates with WebSockets
-- Customizable display names for in-game locations
+- Realtime in-raid status and map.
+- Scav ready status.
+- Insurance status.
+- Real-time updates with WebSockets.
 - Dark war-like theme using Bootstrap
 
 ## Requirements
@@ -32,6 +33,7 @@ Ideally you would run this alongside https://hub.docker.com/r/k2rlxyz/fika See m
 ## Installation
 
 1. **Clone the repository:**
+- Ideally you would clone this into your Fika user directory `fika/user`.
     ```sh
     git clone https://github.com/zak23/tarkov_tracker.git
     cd tarkov_tracker
@@ -76,6 +78,7 @@ We have provided a shell script to automate the process of pulling the latest ch
 The WebSocket server is set up to listen for changes in the JSON files and update the leaderboard accordingly.
 
 ### Docker Settings
+I recommend running this in a Docker container beside your Fika container.
 
 Make sure to set the correct volume path for the JSON files in the Fike Docker container. The default path is `/usr/src/app/profiles`.
 Change the port to something you have free on your host machine. The default port is `3034` as I have other things running.
