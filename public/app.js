@@ -75,7 +75,6 @@ function handlePlayerInfo(playerInfoArray) {
         const {
             username,
             level,
-            health,
             registrationDate,
             CurrentWinStreakValue,
             KilledUsec,
@@ -95,6 +94,7 @@ function handlePlayerInfo(playerInfoArray) {
             rightArmHealth,
             rightLegHealth,
             stomachHealth,
+            userID
         } = playerInfo;
 
 // Determine status cell color based on player's location
@@ -196,7 +196,7 @@ function handlePlayerInfo(playerInfoArray) {
         const tableCell = `${tableCellContent}`;
 
         const row = `
-     <tr data-toggle="collapse" data-target="#row1" class="accordion-toggle">
+     <tr data-toggle="collapse" data-target="#${username}" class="accordion-toggle">
         <td>${index + 1}</td>
         <td>${statusInfo}</td>
 <!--        <td>${registrationDate}</td>-->
@@ -213,7 +213,7 @@ function handlePlayerInfo(playerInfoArray) {
       </tr>
        <tr>
             <td colspan="10" class="hiddenRow">
-                <div class="accordian-body collapse" id="row1"> 
+                <div class="accordian-body collapse" id="${username}"> 
                 <div class="container">
                 <div class="row">
           
@@ -222,9 +222,7 @@ function handlePlayerInfo(playerInfoArray) {
                      <p>Total In-Raid Time: ${totalInGameTimeFormatted}</p>
                     </div>
                      <div class="col-md-4">
-                     <h6>Health</h6>
-                    
-                     
+                     <h6>Health</h6> 
                         <p>Chest Health: ${chestHealth.Current / chestHealth.Maximum * 100}%</p>
                         <p>Head Health: ${headHealth.Current / headHealth.Maximum * 100}%</p>
                         <p>Left Arm Health: ${leftArmHealth.Current / leftArmHealth.Maximum * 100}%</p>

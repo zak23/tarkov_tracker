@@ -23,7 +23,7 @@ const wss = new WebSocket.Server({server});
 function extractPlayerInfo(filePath) {
     const fileData = fs.readFileSync(filePath, 'utf8');
     const jsonData = JSON.parse(fileData);
-
+const userID = jsonData.info.aid;
     const username = jsonData.characters.pmc.Info.Nickname;
     // const registrationDate = jsonData.characters.pmc.Info.RegistrationDate;
     const level = jsonData.characters.pmc.Info.Level;
@@ -79,7 +79,7 @@ function extractPlayerInfo(filePath) {
     const insuranceReady = jsonData.insurance;
 
     // Add more fields as needed
-    return {username, level, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime, scavUp, insuranceReady, Energy, Hydration, Temperature, chestHealth, headHealth, leftArmHealth, leftLegHealth, rightArmHealth, rightLegHealth, stomachHealth};
+    return {username, level, registrationDate, CurrentWinStreakValue, KilledUsec, KilledBear, inRaidLocation, inRaidCharacter, TotalInGameTime, scavUp, insuranceReady, Energy, Hydration, Temperature, chestHealth, headHealth, leftArmHealth, leftLegHealth, rightArmHealth, rightLegHealth, stomachHealth, userID};
 }
 
 

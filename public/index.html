@@ -46,6 +46,24 @@
 
 <!-- Bootstrap JS (optional, only needed if you use Bootstrap JavaScript features) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.table .accordion-toggle').click(function(e){
+            e.preventDefault();
+
+            var $row = $(this).closest('tr');
+            var $target = $($row.data('target'));
+
+            if ($target.hasClass('in')) {
+                $target.collapse('hide');
+                $(this).find('button').text('Expand');
+            } else {
+                $target.collapse('show');
+                $(this).find('button').text('Collapse');
+            }
+        });
+    });
+</script>
 
 <!-- Include your custom JavaScript file -->
 <script src="app.js"></script>
