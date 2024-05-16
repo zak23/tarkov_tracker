@@ -56,7 +56,7 @@ const locationMapping = {
     "RezervBase": "Reserve",
     "TarkovStreets": "Streets of Tarkov",
     "Sandbox": "Ground Zero",
-    "Laboratory": "The Lab"
+    "laboratory": "The Lab"
 };
 
 
