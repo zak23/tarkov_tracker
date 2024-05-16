@@ -14,11 +14,12 @@
 
 </head>
 <body>
-<div class="container">
-    <h1 class="mt-4 mb-3">Escape from Tarkov Leaderboard</h1>
-    <button id="updateButton" class="btn btn-primary mb-3">Update Leaderboard</button>
-    <table id="leaderboard" class="table table-dark">
-        <thead>
+<div class="container mt-5 flex-grow-1">
+    <h1 class="text-center mb-4">Escape from Tarkov Leaderboard</h1>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped">
+            <thead>
+
         <tr>
             <th>Rank</th>
             <th>In Raid</th>
@@ -33,12 +34,26 @@
             <th>Action</th>
             <!-- Add more table headers for additional player information -->
         </tr>
-        </thead>
-        <tbody id="leaderboard-body">
-        <!-- Leaderboard rows will be dynamically added here -->
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="leaderboard-body">
+            <!-- Leaderboard data will be populated here -->
+            </tbody>
+        </table>
+        <button id="updateButton" class="btn btn-warning mb-3">Update Leaderboard</button>
+    </div>
 </div>
+
+
+
+<footer class="bg-dark text-center text-white py-4">
+    <div class="container">
+        <p>&copy; 2024 Tarkov Tracker. All rights reserved.</p>
+        <p>Developed with ❤ by <a href="https://zakozbourne.com" title="Web Developer Zak Ozbourne" target="_blank">Zak Ozbourne</a></p>
+        <a href="https://github.com/zak23/tarkov_tracker" class="text-white" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+    </div>
+</footer>
 
 <!-- Include jQuery first, then Popper.js, and then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

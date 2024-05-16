@@ -208,7 +208,7 @@ function handlePlayerInfo(playerInfoArray) {
      
         <td>${statusScavIcon}</td>
         <td>${tableCell}</td>
-        <td><button class="btn btn-sm btn-info">Expand</button></td>
+        <td><button class="btn btn-secondary btn-sm btn-info">Expand</button></td>
         <!-- Add more table cells for additional player information -->
       </tr>
        <tr>
