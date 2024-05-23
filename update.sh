@@ -2,6 +2,8 @@
 
 # Define the custom container name
 custom_container_name="tarkovtracker"
+current_user_name=$(whoami)
+
 
 # Check if a container with the specified name is running
 if [ "$(docker ps -q -f name=$custom_container_name)" ]; then
@@ -18,4 +20,4 @@ git pull
 docker build --no-cache -t tarkov_tracker .
 
 # Run Docker container with custom name in detached mode
-docker run --name $custom_container_name --restart unless-stopped -d -v /home/docker/fika/user/profiles:/usr/src/app/profiles -p 3034:3000 tarkov_tracker
+docker run --name $custom_container_name --restart unless-stopped -d -v /home/$current_user_name/fika/user/profiles:/usr/src/app/profiles -p 3034:3000 tarkov_tracker
