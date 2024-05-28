@@ -75,6 +75,7 @@ function handlePlayerInfo(playerInfoArray) {
         const {
             username,
             level,
+            lastSession,
             registrationDate,
             CurrentWinStreakValue,
             KilledUsec,
@@ -96,6 +97,13 @@ function handlePlayerInfo(playerInfoArray) {
             stomachHealth,
             userID
         } = playerInfo;
+
+
+// Convert Unix timestamp (seconds) to milliseconds
+        let date = new Date(lastSession * 1000);
+
+// Format the date and time
+        let formattedDate = date.toLocaleString();
 
 // Determine status cell color based on player's location
         const statusCellColor = inRaidLocation !== "none" ? "green" : "red";
@@ -202,9 +210,10 @@ function handlePlayerInfo(playerInfoArray) {
 <!--        <td>${registrationDate}</td>-->
         <td>${username}</td>
         <td>${level}</td>
+        <td>${formattedDate}</td>
 
-        <td>${KilledUsec + KilledBear}</td>
-        <td>${CurrentWinStreakValue}</td>
+    
+      
      
         <td>${statusScavIcon}</td>
         <td>${tableCell}</td>
@@ -216,28 +225,27 @@ function handlePlayerInfo(playerInfoArray) {
                 <div class="accordian-body collapse" id="${username}"> 
                 <div class="container">
                 <div class="row">
-          
-                   <div class="col-md-4"> <h6>Additional Player Information</h6>
+         
+                   <div class="col-md-3"> <h6>Additional Player Information</h6>
                    <h6>Stats</h6>
                      <p>Total In-Raid Time: ${totalInGameTimeFormatted}</p>
                     </div>
-                     <div class="col-md-4">
-                     <h6>Health</h6> 
-                        <p>Chest Health: ${chestHealth.Current / chestHealth.Maximum * 100}%</p>
-                        <p>Head Health: ${headHealth.Current / headHealth.Maximum * 100}%</p>
-                        <p>Left Arm Health: ${leftArmHealth.Current / leftArmHealth.Maximum * 100}%</p>
-                        <p>Left Leg Health: ${leftLegHealth.Current/ leftLegHealth.Maximum * 100}%</p>
-                        <p>Right Arm Health: ${rightArmHealth.Current / rightArmHealth.Maximum * 100}%</p>
-                        <p>Right Leg Health: ${rightLegHealth.Current/ rightLegHealth.Maximum * 100}%</p>
-                        <p>Stomach Health: ${stomachHealth.Current/ stomachHealth.Maximum * 100}%</p>
-                        
+                     <div class="col-md-3">
+                     <p>PMCS Killed: ${KilledUsec + KilledBear}</p>
+                        <p>S in a row: ${CurrentWinStreakValue}</p>
                     </div>
-                     <div class="col-md-4">
+                     <div class="col-md-3">
                     <p>Energy: ${Energy.Current}</p>
                         <p>Hydration: ${Hydration.Current}</p>
                         <p>Temperature: ${Temperature.Current}</p>
                     </div>
-                   </div></div>
+                      <div class="col-md-3">
+                    <p>Energy: ${Energy.Current}</p>
+                        <p>Hydration: ${Hydration.Current}</p>
+                        <p>Temperature: ${Temperature.Current}</p>
+                    </div>
+                   </div>
+                   </div>
                 </div>
             </td>
         </tr>
